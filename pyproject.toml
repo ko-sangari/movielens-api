@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "movielens-app"
+version = "0.1.0"
+description = ""
+authors = ["Koosha Sangari <ko.sangari@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.3"
+djangorestframework = "^3.14.0"
+drf-yasg = "^1.21.7"
+pandas = "^2.2.1"
+asyncio = "^3.4.3"
+django-filter = "^24.1"
+djangorestframework-simplejwt = "^5.3.1"
+setuptools = "^69.2.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+pytest-django = "^4.8.0"
+coverage = "^7.4.4"
+mypy = "^1.9.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+strict_optional = false
+exclude = '(.venv|migrations|core)'

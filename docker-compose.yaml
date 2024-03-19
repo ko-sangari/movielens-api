@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  movielens_django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: movielens_django
+    container_name: movielens_django
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
