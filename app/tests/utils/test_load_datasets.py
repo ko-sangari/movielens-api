@@ -44,29 +44,29 @@ def test_transform_title(title, expected):
 def test_process_movies(mock_data):
     process_movies(mock_data[["movieId", "title", "genres"]])
     assert Movie.objects.count() == 2
-    assert Movie.objects.get(pk=1).title == "The Toy Story"
+    assert Movie.objects.get(id=1).title == "The Toy Story"
 
 
 @pytest.mark.django_db
 def test_process_tags(mock_data):
-    Movie.objects.create(pk=1, title="Movie One")
-    Movie.objects.create(pk=3, title="Movie Three")
+    Movie.objects.create(id=1, title="Movie One")
+    Movie.objects.create(id=3, title="Movie Three")
 
     process_tags(mock_data[["movieId", "tag"]])
-    movie_one = Movie.objects.get(pk=1)
-    movie_three = Movie.objects.get(pk=3)
+    movie_one = Movie.objects.get(id=1)
+    movie_three = Movie.objects.get(id=3)
     assert movie_one.tags == "action"
     assert movie_three.tags == "drama"
 
 
 @pytest.mark.django_db
 def test_process_links(mock_data):
-    Movie.objects.create(pk=1, title="Movie One")
-    Movie.objects.create(pk=2, title="Movie Two")
+    Movie.objects.create(id=1, title="Movie One")
+    Movie.objects.create(id=2, title="Movie Two")
 
     process_links(mock_data[["movieId", "imdbId", "tmdbId"]])
-    movie_one = Movie.objects.get(pk=1)
-    movie_two = Movie.objects.get(pk=2)
+    movie_one = Movie.objects.get(id=1)
+    movie_two = Movie.objects.get(id=2)
     assert movie_one.imdb_id == "0114709"
     assert movie_one.tmdb_id == "862"
     assert movie_two.imdb_id == "0113497"

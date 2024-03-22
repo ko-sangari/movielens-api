@@ -55,7 +55,7 @@ def test_rate_movie_view(api_client, create_user, create_movie):
 
     api_client.force_authenticate(user=user)
 
-    url = reverse("rate-movie", args=[movie.id])
+    url = reverse("movie-rate", args=[movie.id])
     response = api_client.post(url, {"rate": 5})
 
     assert response.status_code == 200
@@ -69,7 +69,7 @@ def test_rate_movie_view_non_existent_movie(api_client, create_user):
 
     api_client.force_authenticate(user=user)
 
-    url = reverse("rate-movie", args=[non_existent_movie_id])
+    url = reverse("movie-rate", args=[non_existent_movie_id])
     response = api_client.post(url, {"rate": 5})
 
     assert response.status_code == 404
@@ -83,7 +83,7 @@ def test_rate_movie_view_invalid_input(api_client, create_user, create_movie):
 
     api_client.force_authenticate(user=user)
 
-    url = reverse("rate-movie", args=[movie.id])
+    url = reverse("movie-rate", args=[movie.id])
     response = api_client.post(url, {"rate": "invalid"})
 
     assert response.status_code == 400
@@ -97,7 +97,7 @@ def test_rate_movie_view_duplicate_rating(api_client, create_user, create_movie)
 
     api_client.force_authenticate(user=user)
 
-    url = reverse("rate-movie", args=[movie.id])
+    url = reverse("movie-rate", args=[movie.id])
     api_client.post(url, {"rate": 4})
     response = api_client.post(
         url, {"rate": 3}
