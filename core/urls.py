@@ -1,15 +1,13 @@
 from django.contrib import admin
 from django.urls import path, re_path, include
-from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 from rest_framework import permissions
-from rest_framework_simplejwt.views import TokenRefreshView
 
-from app.api.v1.views.auth import register_user, login_user
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Move Lens API",
+        title="Movie Lens API",
         default_version="v1",
         description="API documentation",
     ),
