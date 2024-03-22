@@ -91,7 +91,7 @@ make coverage
 
 # Backend Directory               Stmts   Miss  Cover
 # -----------------------------------------------------
-# Test Coverage TOTAL              259     31    88%
+# Test Coverage TOTAL              255     30    88%
 ```
 
 <br>🌟 This project has been thoroughly checked with `mypy` for type consistency, and it currently passes all mypy checks without any issues.

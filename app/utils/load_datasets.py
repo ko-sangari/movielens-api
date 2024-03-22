@@ -90,7 +90,7 @@ def process_movies(chunk):
         title, year = transform_title(movie_dict["title"])
 
         movie = Movie(
-            pk=movie_dict["movieId"],
+            id=movie_dict["movieId"],
             title=title,
             year=year,
             genres=movie_dict["genres"],
@@ -111,7 +111,7 @@ def process_tags(chunk):
     for _, row in aggregated_tags.iterrows():
         movie_id, tags = row["movieId"], row["tag"]
         try:
-            movie = Movie.objects.get(pk=movie_id)
+            movie = Movie.objects.get(id=movie_id)
             movie.tags = tags
             movies_to_update.append(movie)
         except Movie.DoesNotExist:
@@ -128,7 +128,7 @@ def process_links(chunk):
     movies_to_update = []
     movie_ids = chunk["movieId"].tolist()
     existing_movies = {
-        movie.pk: movie for movie in Movie.objects.filter(pk__in=movie_ids)
+        movie.id: movie for movie in Movie.objects.filter(id__in=movie_ids)
     }
 
     for _, row in chunk.iterrows():
